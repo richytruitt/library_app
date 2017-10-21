@@ -27,7 +27,7 @@ class DbFunctions():
         student = self.session.query(Student).filter_by(name=student_name).first()
         print(student.id)
 
-        
+
 
     def create_db(self):
         create_database(self)
