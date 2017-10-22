@@ -39,6 +39,8 @@ class DbFunctions():
         students = []
         index=0
 
+        q = 'SELECT * from student WHERE name = {}'.format
+
         df = pd.read_excel(os.path.join(os.path.dirname(__file__),'../files/students.xlsx'), sheetname='Sheet1')
         
         for i in df.index:
