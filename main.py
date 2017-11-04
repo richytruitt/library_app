@@ -1,6 +1,8 @@
 from databaseFunctions.database_functions import DbFunctions
 import sys
 
+from labelmaking.createlabels import Create_Labels
+
 db = DbFunctions()
 
 
@@ -12,11 +14,23 @@ if sys.argv[1] == '2':
     db.insert_student("New Student")
 
 if sys.argv[1] == '3':
-    db.insert_book("Title of the new book")
+    db.insert_book("Smile")
 
 if sys.argv[1] == '4':
     db.update_current_user("Title of the new book", "Richy Truitt")
 
 if sys.argv[1] == '5':
     db.populate_student_table()
+
+if sys.argv[1] == '6':
+    labelmaker = Create_Labels()
+    labelmaker.create_labels()
+
+if sys.argv[1] == '7':
+    db.get_book_names()
+    #get all books from the database, and place into list. 
+
+
+
+
 

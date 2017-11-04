@@ -50,7 +50,30 @@ class DbFunctions():
             print('Adding Student: {}. type: {}'.format(students[index], type(students[index])))
             self.insert_student(students[index])
             index+=1
+    
+    
+    
+    def get_book_names(self):
+        bookNames=[]
 
+        for i in self.session.query(Book).all():
+            bookNames.append(i.name)
+
+        return bookNames
+
+    
+    
+    
+    def test_import(self):
+        print("Able to import databaseFunctions properly")
+        
+
+    
+
+    
     def create_db(self):
         create_database(self)
+
+    
+
 
