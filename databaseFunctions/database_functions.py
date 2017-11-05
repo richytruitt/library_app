@@ -35,6 +35,21 @@ class DbFunctions():
         self.session.add(book)
         self.session.commit()
 
+    def populate_book_table(self):
+        books=[]
+        index=0
+
+        df = pd.read_excel(os.path.join(os.path.dirname(__file__),'../files/books.xlsx'), sheetname='Sheet1')
+        
+        for i in df.index:
+            books.append(df['Book Names'][i])
+
+        for j in books:
+            print('Adding Book: {}. type: {}'.format(books[index], type(books[index])))
+            self.insert_book(books[index])
+            index+=1
+    
+
     def populate_student_table(self):
         students = []
         index=0
@@ -50,6 +65,7 @@ class DbFunctions():
             print('Adding Student: {}. type: {}'.format(students[index], type(students[index])))
             self.insert_student(students[index])
             index+=1
+    
     
     
     

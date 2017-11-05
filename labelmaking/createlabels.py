@@ -14,11 +14,9 @@ class Create_Labels():
         print("Beginning to create a label")
 
         for i in book_names:
-
             '''
                 the pyqrcode.create() function takes the information that the qrcode will display as a parameter. Code.png depends on pypng in order to run
             '''
-
             code = pyqrcode.create(i)
             code.png('labelmaking/labels/{}.png'.format(i), scale=5)
 
