@@ -1,0 +1,9 @@
+numpy==1.13.3
+pandas==0.20.3
+pypng==0.0.18
+PyQRCode==1.2.1
+python-dateutil==2.6.1
+pytz==2017.2
+six==1.11.0
+SQLAlchemy==1.1.14
+xlrd==1.1.0
