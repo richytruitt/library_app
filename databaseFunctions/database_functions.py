@@ -1,17 +1,13 @@
 import pandas as pd
-import sys, os
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
  
 from databaseFunctions.database_model import Student, Base, Book, create_database
 
-
-
 class DbFunctions():
 
     def __init__(self):
-        sys.path.append('..')
         self.engine = create_engine('sqlite:///database/exampledb.db')
         Base.metadata.bind = self.engine
         DBSession = sessionmaker(bind=self.engine)
@@ -67,8 +63,6 @@ class DbFunctions():
             index+=1
     
     
-    
-    
     def get_book_names(self):
         bookNames=[]
 
@@ -77,8 +71,15 @@ class DbFunctions():
 
         return bookNames
 
-    
-    
+    def get_name_of_owner(self, student_id):
+        student = self.session.query(Student).filter_by(id = student_id).first()
+        
+        print("The owner is: {}".format(student.name))
+
+
+
+    def get_session(self):
+        return self.session
     
     def test_import(self):
         print("Able to import databaseFunctions properly")
