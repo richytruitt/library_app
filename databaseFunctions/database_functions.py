@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -8,7 +9,7 @@ from databaseFunctions.database_model import Student, Base, Book, create_databas
 class DbFunctions():
 
     def __init__(self):
-        self.engine = create_engine('sqlite:///database/exampledb.db')
+        self.engine = create_engine('sqlite:///database/library.db')
         Base.metadata.bind = self.engine
         DBSession = sessionmaker(bind=self.engine)
         self.session = DBSession()
@@ -25,7 +26,6 @@ class DbFunctions():
 
     def update_current_user(self, book_name, student_name):
         student = self.session.query(Student).filter_by(name=student_name).first()
-        print(student.id)
         book = self.session.query(Book).filter_by(name = book_name).first()
         book.current_student = student.id
         self.session.add(book)

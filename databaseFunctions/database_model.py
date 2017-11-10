@@ -24,5 +24,5 @@ class Book(Base):
 
 
 def create_database(self):
-    engine = create_engine('sqlite:///database/exampledb.db')
+    engine = create_engine('sqlite:///database/library.db')
     Base.metadata.create_all(engine)
