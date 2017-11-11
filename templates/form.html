@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html>
-<body>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <!-- <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> -->
+        <script src="../static/js/instascan.min.js"></script>
+        <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>  -->
+    </head>
     
-    <div class='container'>
-
-        <div class="well well-lg" align="center" style="background-color: #FFFFFF; height: 50px; border-radius:25px;">
-            
-        </div> 
-
-    </div>
-
-
-
+    <body>
+        
+        <br/>
+        <br/>
+        
         <div class = 'container'>
-        <form action="{{ url_for('checkout') }}" method="post" style="vertical-align: middle;">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Student ID</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Scan student ID" name="student_name">
+            <form action="{{ url_for('checkout') }}" method="post" style="vertical-align: middle;">
+                
+                <div class="form-group">
+                    <label for="student_id">Student ID</label>
+                    <input type="text" class="form-control" id="student_id" aria-describedby="st" placeholder="Scan student ID" name="student_name">
                 <small id="emailHelp" class="form-text text-muted">This is an example of text below the box</small>
             </div>
+            
             <div class="form-group">
                 <label for="exampleTextarea">Books to checkout</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                <textarea class="form-control" id="exampleTextarea" rows="3" name="book_names"></textarea>
             </div>
-            <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-                <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
-            </div>
+            
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Go Back</a>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+    <video id="preview"></video>
+    <button onclick="test()">Click</button>
+    <script src="../static/js/test.js"></script>
 
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script>
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+    scanner.addListener('scan', function (content) {
+      document.getElementById('student_id').value = content
+    });
+    Instascan.Camera.getCameras().then(function (cameras) {
+      if (cameras.length > 0) {
+        scanner.start(cameras[0]);
+      } else {
+        console.error('No cameras found.');
+      }
+    }).catch(function (e) {
+      console.error(e);
+    });
+    
+    </script>
 </body>
 </html>

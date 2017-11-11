@@ -5,7 +5,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return redirect(url_for("update"))
+    # return redirect(url_for("update"))
+    return render_template('index.html')
 
 
 @app.route("/update")
@@ -15,12 +16,17 @@ def update():
 @app.route('/checkout', methods=['POST'])
 def checkout():
     db = DbFunctions()
+    book_list = []
     student_name = request.form['student_name']
-
-    db.update_current_user("Test Book", student_name)
+    book_names = request.form['book_names']
     
-    print("updated Test Book with student: {}".format(student_name))
-    print(type(student_name))
+    split_list = book_names.split(',')
+    
+    for i in split_list:
+        book_list.append(i.strip())
+
+    for i in book_list:
+        db.update_current_user(i, student_name)
     
     return redirect(url_for("update"))
 

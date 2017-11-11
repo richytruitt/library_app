@@ -15,7 +15,7 @@ if sys.argv[1] == '2':
     db.insert_student("Richy Truitt")
 
 if sys.argv[1] == '3':
-    db.insert_book("Test Book")
+    db.insert_book("Test Book 3")
 
 if sys.argv[1] == '4':
     db.update_current_user("Test Book", "Richy Truitt")
