@@ -1,6 +1,6 @@
 
-function test() {
-    show_id_scanner();
+function test(names) {
+    alert(names)
 
 }
 

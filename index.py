@@ -11,7 +11,9 @@ def index():
 
 @app.route("/update")
 def update():
-    return render_template('form.html')
+    students = ['Richy Truitt', 'Cortney Jordan']
+    books = ["Test Book", "Test Book 2"]
+    return render_template('form.html', names = students, books = books)
 
 @app.route('/checkout', methods=['POST'])
 def checkout():

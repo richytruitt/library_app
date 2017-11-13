@@ -24,7 +24,7 @@
             
             <div class="form-group">
                 <label for="exampleTextarea">Books to checkout</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3" name="book_names"></textarea>
+                <textarea class="form-control" id="book_names" rows="3" name="book_names"></textarea>
             </div>
             
             <a href="{{ url_for('index') }}" class="btn btn-primary">Go Back</a>
@@ -32,21 +32,36 @@
         </form>
     </div>
     <video id="preview"></video>
-    <button onclick="test()">Click</button>
     <script src="../static/js/test.js"></script>
 
     <script>
+        var names = {{ names|tojson }};
+        var books = {{ books|tojson }};
+        var i; 
+        console.log(names);
+        console.log(books);
         let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-    scanner.addListener('scan', function (content) {
-      document.getElementById('student_id').value = content
-    });
-    Instascan.Camera.getCameras().then(function (cameras) {
-      if (cameras.length > 0) {
-        scanner.start(cameras[0]);
-      } else {
-        console.error('No cameras found.');
-      }
-    }).catch(function (e) {
+        scanner.addListener('scan', function (content) {
+            for(i=0; i<names.length; i++){
+                if(content === names[i]){
+                    document.getElementById('student_id').value = content;
+                }  
+                
+            };
+
+            for(i=0; i<books.length; i++){
+                if(content === books[i]){
+                    document.getElementById('book_names').value = content;
+                }
+            }
+        });
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+            } else {
+                console.error('No cameras found.');
+            }
+        }).catch(function (e) {
       console.error(e);
     });
     

@@ -71,12 +71,21 @@ class DbFunctions():
 
         return bookNames
 
+    def get_student_names(self):
+        student_names=[]
+
+        for i in self.session.query(Student).all():
+            student_names.append(i.name)
+
+        return student_names
+
     def get_name_of_owner(self, student_id):
         student = self.session.query(Student).filter_by(id = student_id).first()
         
         print("The owner is: {}".format(student.name))
 
 
+   
 
     def get_session(self):
         return self.session
