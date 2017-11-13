@@ -25,7 +25,8 @@ class Create_Labels():
         for i in student_names:
 
             code = pyqrcode.create(i)
-            code.png('labelmaking/labels/students/{}.png'.format(i), scale=5)
+            code.png('labelmaking/labels/students/{}.png'.format(i), scale=5
+            )
 
 
 
