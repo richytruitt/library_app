@@ -11,8 +11,10 @@ def index():
 
 @app.route("/update")
 def update():
-    students = ['Richy Truitt', 'Cortney Jordan']
-    books = ["Test Book", "Test Book 2"]
+    db = DbFunctions()
+    students = db.get_student_names()
+    books = db.get_book_names()
+
     return render_template('form.html', names = students, books = books)
 
 @app.route('/checkout', methods=['POST'])

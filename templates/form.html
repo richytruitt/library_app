@@ -3,9 +3,8 @@
     <head>
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-        <!-- <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> -->
         <script src="../static/js/instascan.min.js"></script>
-        <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     
     <body>
@@ -14,24 +13,36 @@
         <br/>
         
         <div class = 'container'>
-            <form action="{{ url_for('checkout') }}" method="post" style="vertical-align: middle;">
-                
-                <div class="form-group">
-                    <label for="student_id">Student ID</label>
-                    <input type="text" class="form-control" id="student_id" aria-describedby="st" placeholder="Scan student ID" name="student_name">
-                <small id="emailHelp" class="form-text text-muted">This is an example of text below the box</small>
-            </div>
+
             
-            <div class="form-group">
-                <label for="exampleTextarea">Books to checkout</label>
-                <textarea class="form-control" id="book_names" rows="3" name="book_names"></textarea>
+            <div class="row">
+
+
+                <div class="col-sm-3">
+                    <video id="preview" style="width: 75%; height: 250px;"></video>
+                </div>
+
+
+                <div class="col-sm-9">
+                     <form action="{{ url_for('checkout') }}" method="post" style="vertical-align: middle;">
+                            
+                        <div class="form-group">
+                            <label for="student_id">Student ID</label>
+                            <input type="text" class="form-control" id="student_id" aria-describedby="st" placeholder="Scan student ID" name="student_name">
+                            <small id="emailHelp" class="form-text text-muted">This is an example of text below the box</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="exampleTextarea">Books to checkout</label>
+                            <textarea class="form-control" id="book_names" rows="3" name="book_names"></textarea>
+                        </div>
+                        
+                        <a href="{{ url_for('index') }}" class="btn btn-primary">Go Back</a>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
-            
-            <a href="{{ url_for('index') }}" class="btn btn-primary">Go Back</a>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    <video id="preview"></video>
+        </div>
     <script src="../static/js/test.js"></script>
 
     <script>
@@ -42,6 +53,7 @@
         console.log(books);
         let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
         scanner.addListener('scan', function (content) {
+            console.log(content)
             for(i=0; i<names.length; i++){
                 if(content === names[i]){
                     document.getElementById('student_id').value = content;
