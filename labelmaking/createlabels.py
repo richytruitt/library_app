@@ -20,12 +20,12 @@ class Create_Labels():
                 the pyqrcode.create() function takes the information that the qrcode will display as a parameter. Code.png depends on pypng in order to run
             '''
             code = pyqrcode.create(i)
-            code.png('labelmaking/labels/books/{}.png'.format(i), scale=5)
+            code.png('static/labels/books/{}.png'.format(i), scale=5)
 
         for i in student_names:
 
             code = pyqrcode.create(i)
-            code.png('labelmaking/labels/students/{}.png'.format(i), scale=5)
+            code.png('static/labels/students/{}.png'.format(i), scale=5)
 
 
 

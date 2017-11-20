@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            {% for n in items | batch(3, '&nbsp;') %}
+                    <div class="row">
+                    {% for x in n %}
+                    <div class="col col-lg-3">
+                        <img src = "{{ url_for('static', filename =  x['link']) }}" height = '160px', width = '160px'>
+                        <figcaption> {{x['name']}} </figcaption>
+                        <br/>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
+        
+        
