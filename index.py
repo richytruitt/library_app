@@ -52,5 +52,20 @@ def ids():
     return render_template('ids.html', items=dictionary)
 
 
+@app.route('/books')
+def books():
+    db = DbFunctions()
+    books = db.get_book_names()
+    dictionary = []
+    
+    for i in books:
+        case = {'link': 'labels/books/{}.png'.format(i), 'name': i}
+        dictionary.append(case)
+    
+    print(dictionary)
+
+    return render_template('books.html', items=dictionary)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5555")
