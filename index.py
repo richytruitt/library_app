@@ -67,5 +67,10 @@ def books():
     return render_template('books.html', items=dictionary)
 
 
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5555")

@@ -12,7 +12,7 @@ if sys.argv[1] == '1':
     db.create_db()
 
 if sys.argv[1] == '2':
-    db.insert_student("Richy Truitt")
+    db.insert_student("New Test Student")
 
 if sys.argv[1] == '3':
     db.insert_book("Test Book 3")
