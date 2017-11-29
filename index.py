@@ -69,8 +69,9 @@ def books():
 
 @app.route('/admin')
 def admin():
-    return render_template('admin.html')
-
+    db = DbFunctions()
+    books = db.query_books_database()
+    return render_template('admin.html', table=books)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5555")
