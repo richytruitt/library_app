@@ -36,23 +36,19 @@ class DbFunctions():
 
 
     def populate_book_table(self):
-        books=[]
-        index=0
-
         df = pd.read_excel(os.path.join(os.path.dirname(__file__),'../files/books.xlsx'), sheetname='Sheet1')
         
         for i in df.index:
-            books.append(df['Book Names'][i])
+            self.insert_book(df['Book Names'][i])
+
+
     
 
     def populate_student_table(self):
-        students = []
-        index=0
-
         df = pd.read_excel(os.path.join(os.path.dirname(__file__),'../files/students.xlsx'), sheetname='Sheet1')
         
         for i in df.index:
-            students.append(df['Student Names'][i])
+            self.insert_student(df['Student Names'][i])
     
 
     def get_book_names(self):

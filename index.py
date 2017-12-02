@@ -47,8 +47,6 @@ def ids():
         case = {'link': 'labels/students/{}.png'.format(i), 'name': i}
         dictionary.append(case)
     
-    print(dictionary)
-
     return render_template('ids.html', items=dictionary)
 
 
@@ -62,7 +60,6 @@ def books():
         case = {'link': 'labels/books/{}.png'.format(i), 'name': i}
         dictionary.append(case)
     
-    print(dictionary)
 
     return render_template('books.html', items=dictionary)
 
