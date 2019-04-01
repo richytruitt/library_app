@@ -6,32 +6,32 @@
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     </head>
     
-    <div class="container">
-        <table class="table table-striped" id="table">
-            <thead>
-                <tr>
-                    <th> Book ID </th>
-                    <th> Book Name </th>
-                    <th> Current Student </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in table %}
-                <tr>
-                    <td> {{ i['id'] }} </td>
-                    <td> {{ i['name'] }} </td>
-                    <td> {{ i['current_student'] }} </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1><strong>Admin Page</strong></h1>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1><strong>Admin Page</strong></h1>
+                </div>
             </div>
+        <div class="container">
+            <table class="table table-striped" id="table">
+                <thead>
+                    <tr>
+                        <th> Book ID </th>
+                        <th> Book Name </th>
+                        <th> Current Student </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in table %}
+                    <tr>
+                        <td> {{ i['id'] }} </td>
+                        <td> {{ i['name'] }} </td>
+                        <td> {{ i['current_student'] }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
         <hr>
         <div class="row">
