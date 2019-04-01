@@ -1,11 +1,31 @@
 <html>
-<head>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-</head>
-
+    <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    </head>
+    
+    <div class="container">
+        <table class="table table-striped" id="table">
+            <thead>
+                <tr>
+                    <th> Book ID </th>
+                    <th> Book Name </th>
+                    <th> Current Student </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in table %}
+                <tr>
+                    <td> {{ i['id'] }} </td>
+                    <td> {{ i['name'] }} </td>
+                    <td> {{ i['current_student'] }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 <body>
     <div class="container">
         <div class="row">
@@ -53,26 +73,6 @@
         </div>
     </div>
     <br/>
-    <div class="container">
-        <table class="table table-striped" id="table">
-            <thead>
-                <tr>
-                    <th> Book ID </th>
-                    <th> Book Name </th>
-                    <th> Current Student </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in table %}
-                <tr>
-                    <td> {{ i['id'] }} </td>
-                    <td> {{ i['name'] }} </td>
-                    <td> {{ i['current_student'] }} </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
     <script>
         $(document).ready(function(){
             $('#table').DataTable();

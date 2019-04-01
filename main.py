@@ -9,7 +9,12 @@ db = DbFunctions()
 
 #------------------------------------------------Create------------------------------------------------------#
 if sys.argv[1] == '1':
+    labelmaker = Create_Labels()
+    
     db.create_db()
+    db.populate_book_table()
+    db.populate_student_table()
+    labelmaker.create_labels()
 
 if sys.argv[1] == '2':
     db.insert_student("New Test Student")
